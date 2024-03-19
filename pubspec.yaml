@@ -1,7 +1,7 @@
 name: ios_network_interfaces
 description: "Plugin that provides a list of available network interfaces."
 version: 0.0.1
-homepage:
+homepage: https://github.com/Syaba999/ios_network_interfaces
 
 environment:
   sdk: ">=2.18.0 <4.0.0"
