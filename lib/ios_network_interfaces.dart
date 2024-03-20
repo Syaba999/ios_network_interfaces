@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:ios_network_interfaces/ios_network_interfaces_platform_interface.dart';
 
 import 'src/enums.dart';
@@ -14,11 +16,17 @@ class IosNetworkInterfaces {
 
   static IosNetworkInterfaces? _singleton;
 
-  Stream<List<NetworkInterfaceType>> get onNetworkInterfacesChanged {
-    return IosNetworkInterfacesPlatform.instance.onNetworkInterfacesChanged;
+  Stream<List<NetworkInterfaceType>>? get onNetworkInterfacesChanged {
+    if (Platform.isIOS) {
+      return IosNetworkInterfacesPlatform.instance.onNetworkInterfacesChanged;
+    }
+    return null;
   }
 
   Future<List<NetworkInterfaceType>> checkNetworkInterfaces() {
-    return IosNetworkInterfacesPlatform.instance.checkNetworkInterfaces();
+    if (Platform.isIOS) {
+      return IosNetworkInterfacesPlatform.instance.checkNetworkInterfaces();
+    }
+    return Future(() => <NetworkInterfaceType>[]);
   }
 }
